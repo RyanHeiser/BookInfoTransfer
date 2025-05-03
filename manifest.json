@@ -1,0 +1,10 @@
+{
+    "name": "Book Info Transfer",
+    "description": "Moves book information from ipage to lightspeed",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "main.html",
+      "default_icon": "BIT.png"
+    }
+  }

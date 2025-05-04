@@ -1,18 +1,20 @@
 var infoArr = ["default_description", "default_ean", "default_pricing"];
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("read.js listener");
-    if (message.copy) {
-        getInfo();
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.greeting === "hello")
+        response = getInfo();
+        console.log("test");
+        sendResponse(response);
     }
-});
+  );
 
 function getInfo() {
     console.log("The getInfo() function is being called.");
     const title = document.getElementById("pd-title").textContent;
     let cover = "sc";
     const productDetails = document.getElementsByClassName("productDetailElements");
-    if (productDetails.item(3).textContent.toLowerCase().includes(hardcover)) {
+    if (productDetails.item(3).textContent.toLowerCase().includes("hardcover")) {
         cover = "hc";
     }
     const author = document.getElementsByClassName("doContributorSearch").item(0).textContent;
@@ -20,9 +22,10 @@ function getInfo() {
     infoArr[1] = productDetails.item(0).textContent;
     infoArr[2] = productDetails.item(2).textContent;
     console.log("info gathered");
-    send({
-        info: infoArr
-    });
+    return infoArr;
+    // send({
+    //     info: infoArr
+    // });
 }
 
 async function send(message) {

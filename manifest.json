@@ -21,6 +21,20 @@
     "background": {
       "service_worker": "scripts/serviceWorker.js"
     },
+    "content_scripts": [
+      {
+        "js": ["scripts/read.js"],
+        "matches": [
+          "https://ipage.ingramcontent.com/ipage/productdetail?*"
+        ]
+      },
+      {
+        "js": ["scripts/write.js"],
+        "matches": [
+          "https://us.merchantos.com/?name=item.views.quick_add&form_name=view&id=null&tab=details"
+        ]
+      }
+    ],
     "permissions": [
         "scripting",
         "activeTab"

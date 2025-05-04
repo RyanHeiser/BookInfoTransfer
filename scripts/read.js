@@ -2,14 +2,14 @@ var infoArr = ["default_description", "default_ean", "default_pricing"];
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.greeting === "hello")
-        response = getInfo();
-        console.log("test");
+      if (request.greeting === "copy") {
+        response = copyInfo();
         sendResponse(response);
+      }
     }
   );
 
-function getInfo() {
+function copyInfo() {
     console.log("The getInfo() function is being called.");
     const title = document.getElementById("pd-title").textContent;
     let cover = "sc";
@@ -35,12 +35,6 @@ function getInfo() {
     infoArr[2] = price.substring(start, end + 1);
     console.log("info gathered");
     return infoArr;
-    // send({
-    //     info: infoArr
-    // });
+    
 }
 
-async function send(message) {
-    const response = await chrome.runtime.sendMessage(message);
-    // Optional: do something with response
-}

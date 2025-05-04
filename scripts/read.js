@@ -1,6 +1,7 @@
 var infoArr = ["default_description", "default_ean", "default_pricing"];
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log("read.js listener");
     if (message.copy) {
         getInfo();
     }
@@ -18,6 +19,7 @@ function getInfo() {
     infoArr[0] = title + " " + cover + " | " + author;
     infoArr[1] = productDetails.item(0).textContent;
     infoArr[2] = productDetails.item(2).textContent;
+    console.log("info gathered");
     send({
         info: infoArr
     });

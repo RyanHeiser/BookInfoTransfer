@@ -3,14 +3,15 @@ let infoText = document.getElementById("infoText");
 
 copyButton.addEventListener('click', () => {
     send({
-        copy: true
+        doSomething: true
     });
 });
 
 async function send(message) {
     const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
     const response = await chrome.tabs.sendMessage(tab.id, message);
-    infoText.textContent = response;
+    //infoText.textContent = response;
+    // Optional: do something with response
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

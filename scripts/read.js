@@ -19,8 +19,20 @@ function getInfo() {
     }
     const author = document.getElementsByClassName("doContributorSearch").item(0).textContent;
     infoArr[0] = title + " " + cover + " | " + author;
-    infoArr[1] = productDetails.item(0).textContent;
-    infoArr[2] = productDetails.item(2).textContent;
+    let EAN = productDetails.item(0).textContent;
+    EAN = EAN.substring(EAN.indexOf("EAN:") + 4).trim();
+    infoArr[1] = EAN;
+    let price = productDetails.item(2).textContent;
+    let start = price.indexOf("$") + 1;
+    let end = start;
+
+    for (let i = start; i < price.length; i++) {
+      if ((price.at(end + 1) >= '0' && price.at(end + 1) <= '9') || price.at(end + 1) === '.') {
+        end++;
+      }
+    }
+
+    infoArr[2] = price.substring(start, end + 1);
     console.log("info gathered");
     return infoArr;
     // send({

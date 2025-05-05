@@ -18,7 +18,6 @@ transferButton.addEventListener('click', () => {
             console.log("info saved to storage");
           });
 
-          console.log(chrome.storage.sync);
           infoText.textContent = "transfered info";
         } else {
           console.log("could not extract data");

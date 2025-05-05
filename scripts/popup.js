@@ -19,7 +19,7 @@ copyButton.addEventListener('click', () => {
       //   console.log("got: " + obj.info);
       // })
       console.log(chrome.storage.local);
-      infoText.textContent = infoArr; // temp
+      infoText.textContent = "copied info"; // temp
     })();
 });
 
@@ -28,6 +28,7 @@ pasteButton.addEventListener('click', () => {
   (async () => {
       const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true}); // get the current tab
       const response = await chrome.tabs.sendMessage(tab.id, {greeting: "paste"}); // send a message to write.js to paste information
+      infoText.textContent = "pasted info";
       //console.log(response);
     })();
 });

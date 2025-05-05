@@ -34,10 +34,22 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     tagValue += yearToString(date.getFullYear());
     const tag = document.getElementById("react-select-4-input");
     tag.focus();
+    // enters the tag string into the input element
     if (!document.execCommand('insertText', false, tagValue)) {
         tag.value = value;
     }
-    tag.dispatchEvent(ev);
+    tag.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
+
+    if (!infoArr[3]) {
+        infoArr[3] = "NO_VENDOR_FOUND";
+    }
+    const vendor = document.getElementById("react-select-3-input");
+    vendor.focus();
+    // enters the vendor string into the input element
+    if (!document.execCommand('insertText', false, infoArr[3])) {
+        vendor.value = value;
+    }
+    vendor.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
     
     // sets inventory to 1
     const inv = document.getElementById("view_function__reorder_lvl");

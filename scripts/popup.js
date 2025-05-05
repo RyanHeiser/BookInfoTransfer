@@ -2,7 +2,7 @@ let transferButton = document.getElementById("transferButton");
 // let pasteButton = document.getElementById("pasteButton");
 let infoText = document.getElementById("infoText");
 
-var infoArr = ["default_description", "default_ean", "default_pricing"];
+var infoArr = ["default_description", "default_ean", "default_pricing", "default_publisher"];
 
 // listens for the copy button to be clicked
 transferButton.addEventListener('click', () => {
@@ -13,11 +13,15 @@ transferButton.addEventListener('click', () => {
         if (response != undefined) {
           console.log(response);
           infoArr = response;  // sets the infoArr to the response received
+          await loadVendors();
+          infoArr[3] = await getVendor(infoArr[3]);
+          console.log(infoArr[3]);
           // saves the info to storage
-          await chrome.storage.sync.set({info: response}, function() {
+          chrome.storage.sync.set({info: infoArr}, function() {
             console.log("info saved to storage");
           });
 
+          
           infoText.textContent = "transfered info";
         } else {
           console.log("could not extract data");
@@ -25,5 +29,7 @@ transferButton.addEventListener('click', () => {
       } else {
         console.log("no valid active tabs in last focused window");
       }
-    })().catch((e) => {console.log("transfer must be initiated from a book webpage on the ipage site")});
+    })().catch((err) => {console.log("transfer must be initiated from a book webpage on the ipage site\n" + err)});
 });
+
+

@@ -1,4 +1,4 @@
-var infoArr = ["default_description", "default_ean", "default_pricing"];
+var infoArr = ["default_description", "default_ean", "default_pricing", "default_publisher"];
 
 // listens for the copy message from popup.js
 chrome.runtime.onMessage.addListener(
@@ -39,6 +39,10 @@ function copyInfo() {
       }
     }
     infoArr[2] = price.substring(start, end + 1);
+
+    // gets the publisher
+    const publisher = document.getElementsByClassName("doPublisherSearch").item(0);
+    infoArr[3] = publisher.textContent.trim();
 
     console.log("info gathered");
     return infoArr;

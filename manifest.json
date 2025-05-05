@@ -33,7 +33,7 @@
       {
         "js": ["scripts/write.js"],
         "matches": [
-          "https://us.merchantos.com/?name=item.views.quick_add&form_name=view&id=undefined&tab=details"
+          "https://*.merchantos.com/*"
         ]
       }
     ]

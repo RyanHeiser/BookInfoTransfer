@@ -1,5 +1,7 @@
 var infoArr = ["default_description", "default_ean", "default_pricing", "default_publisher"];
 
+console.log("injected read.js from Book Info Transfer");
+
 // listens for the copy message from popup.js
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {

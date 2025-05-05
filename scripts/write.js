@@ -1,6 +1,8 @@
 
 var infoArr = ["default_description", "default_ean", "default_pricing"];
 
+console.log("injected write.js from Book Info Transfer");
+
 // listens for changes to "info" in storage
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     if (changes.info.newValue != undefined) {
@@ -13,49 +15,61 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
   function pasteInfo() {
-    console.log("pasting");
+    try {
+      console.log("pasting");
 
-    // enters description
-    const description = document.getElementById("view_description");
-    description.value = infoArr[0];
+      // enters description
+      const description = document.getElementById("view_description");
+      description.value = infoArr[0];
 
-    // enters EAN
-    const ean = document.getElementById("view_ean");
-    ean.value = infoArr[1];
+      // enters EAN
+      const ean = document.getElementById("view_ean");
+      ean.value = infoArr[1];
 
-    // enters price
-    const price = document.getElementById("view_price_default");
-    price.value = infoArr[2];
+      // enters price
+      const price = document.getElementById("view_price_default");
+      price.value = infoArr[2];
 
-    // gets the current date and enters the appropriate tag
-    let tagValue = "b";
-    const date = new Date(); 
-    tagValue += monthToString(date.getMonth());
-    tagValue += yearToString(date.getFullYear());
-    const tag = document.getElementById("react-select-4-input");
-    tag.focus();
-    // enters the tag string into the input element
-    if (!document.execCommand('insertText', false, tagValue)) {
-        tag.value = value;
+      // gets the current date and enters the appropriate tag
+      let tagValue = "b";
+      const date = new Date(); 
+      tagValue += monthToString(date.getMonth());
+      tagValue += yearToString(date.getFullYear());
+      const tag = document.getElementById("react-select-4-input");
+      if (!tag) {
+        tag = document.getElementById("react-select-7-input");
+      }
+      tag.focus();
+      // enters the tag string into the input element
+      if (!document.execCommand('insertText', false, tagValue)) {
+          tag.value = value;
+      }
+      tag.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
+
+      // sets the vendor
+      if (!infoArr[3]) {
+          infoArr[3] = "NO_VENDOR_FOUND";
+      }
+      const vendor = document.getElementById("react-select-3-input");
+      if (!vendor) {
+        vendor = document.getElementById("react-select-6-input");
+      }
+      vendor.focus();
+      // enters the vendor string into the input element
+      if (!document.execCommand('insertText', false, infoArr[3])) {
+          vendor.value = value;
+      }
+      vendor.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
+      
+      // sets inventory to 1
+      const inv = document.getElementById("view_function__reorder_lvl");
+      inv.value = "1";
+
+      chrome.storage.sync.clear(); // clears storage so the same book info can be passed in and the onChanged listener will still fire
+    } catch (err) {
+      console.log("Must be on the Inventory/New Item page to transfer information\n" + err);
+      
     }
-    tag.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
-
-    if (!infoArr[3]) {
-        infoArr[3] = "NO_VENDOR_FOUND";
-    }
-    const vendor = document.getElementById("react-select-3-input");
-    vendor.focus();
-    // enters the vendor string into the input element
-    if (!document.execCommand('insertText', false, infoArr[3])) {
-        vendor.value = value;
-    }
-    vendor.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
-    
-    // sets inventory to 1
-    const inv = document.getElementById("view_function__reorder_lvl");
-    inv.value = "1";
-
-    chrome.storage.sync.clear(); // clears storage so the same book info can be passed in and the onChanged listener will still fire
   }
 
   // converts a month integer (0-11) to a 3 character string

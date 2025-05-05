@@ -8,7 +8,6 @@ async function loadVendors() {
         let publisher = text.substring(0, text.indexOf(",")).trim().toLowerCase();
         text = text.substring(text.indexOf(",") + 1, text.length);
         let vendor =  text.substring(0, text.indexOf(",")).trim();
-        //console.log("publisher: " + publisher + " vendor: " + vendor);
         Vendors.set(publisher, vendor);
         try {
             text = text.substring(text.indexOf("\n") + 1, text.length);

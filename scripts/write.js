@@ -1,20 +1,13 @@
 var infoArr = ["default_description", "default_ean", "default_pricing"];
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.greeting == "paste") {
-        console.log("test");
-        console.log(chrome.storage.local);
-        chrome.storage.local.get("info", function(obj) {
-            console.log("got: " + obj.info);
-            infoArr = obj.info;
-            pasteInfo();
-          })
-        
-        sendResponse("hi");
-      }
-    }
-  );
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    console.log("change");
+    chrome.storage.sync.get("info", function(obj) {
+        console.log("got: " + obj.info);
+        infoArr = obj.info;
+        pasteInfo();
+    })
+});
 
   function pasteInfo() {
     console.log("pasting");

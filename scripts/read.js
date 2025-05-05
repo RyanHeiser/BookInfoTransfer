@@ -35,6 +35,6 @@ function copyInfo() {
     infoArr[2] = price.substring(start, end + 1);
     console.log("info gathered");
     return infoArr;
-    
 }
+
 

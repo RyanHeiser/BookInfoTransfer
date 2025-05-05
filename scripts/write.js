@@ -8,7 +8,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             pasteInfo();
         })
     }
-    
 });
 
   function pasteInfo() {

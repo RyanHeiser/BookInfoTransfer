@@ -9,6 +9,7 @@ chrome.runtime.onMessage.addListener(
     }
   );
 
+  // extracts the information from the site
 function copyInfo() {
     console.log("The getInfo() function is being called.");
     const title = document.getElementById("pd-title").textContent;

@@ -1,12 +1,14 @@
 var infoArr = ["default_description", "default_ean", "default_pricing"];
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    console.log("change");
-    chrome.storage.sync.get("info", function(obj) {
-        console.log("got: " + obj.info);
-        infoArr = obj.info;
-        pasteInfo();
-    })
+    if (changes.info.newValue != undefined) {
+        chrome.storage.sync.get("info", function(obj) {
+            console.log("got: " + obj.info);
+            infoArr = obj.info;
+            pasteInfo();
+        })
+    }
+    
 });
 
   function pasteInfo() {
@@ -19,4 +21,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     price.value = infoArr[2];
     const inv = document.getElementById("view_function__reorder_lvl");
     inv.value = "1";
+
+    chrome.storage.sync.clear();
   }

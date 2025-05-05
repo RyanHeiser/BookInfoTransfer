@@ -3,6 +3,11 @@
     "description": "Moves book information from ipage to lightspeed",
     "version": "1.0",
     "manifest_version": 3,
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
@@ -34,10 +39,5 @@
           "https://us.merchantos.com/?name=item.views.quick_add&form_name=view&id=undefined&tab=details"
         ]
       }
-    ],
-    "permissions": [
-        "scripting",
-        "activeTab",
-        "storage"
     ]
 }

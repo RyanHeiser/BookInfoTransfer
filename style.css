@@ -1,0 +1,41 @@
+:root {
+    --secondary-color: rgb(255, 255, 255);
+}
+
+body {
+    width: 150px;
+
+    border-style: solid;
+    border-color: var(--secondary-color);
+    border-width: 3px;
+
+    padding-bottom: 15px;
+    background-color: #051642;
+}
+
+h1 {
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.transfer-button {
+    width: 130px;
+    height: 65px;
+    display: block;
+    margin: auto;
+
+    border-style: double;
+    border-color: var(--secondary-color);
+    border-width: 7px;
+
+    background-color: #1568d4;
+    font-size: 20;
+    font-weight: bold;
+    color: var(--secondary-color);
+    border-radius: 20px;
+}
+
+.info-text {
+    text-align: center;
+    color: var(--secondary-color);
+}

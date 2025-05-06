@@ -35,8 +35,8 @@ transferButton.addEventListener('click', () => {
         infoText.textContent = "no valid active tabs in last focused window";
       }
     })().catch((err) => {
-      console.log("transfer must be initiated from a book webpage on the ipage site\n" + err);
-      infoText.textContent = "transfer must be initiated from a book webpage on the ipage site";
+      console.log("transfer must be initiated from a book webpage on the ipage site\n(try refreshing)\n" + err);
+      infoText.textContent = "transfer must be initiated from a book webpage on ipage (try refreshing)";
     });
 });
 

@@ -15,7 +15,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
   function pasteInfo() {
-    // try {
+    try {
       console.log("pasting");
 
       // enters description
@@ -78,9 +78,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       inv.value = "1";
 
       chrome.storage.sync.clear(); // clears storage so the same book info can be passed in and the onChanged listener will still fire
-    // } catch (err) {
-    //   console.log("Must be on the Inventory/New Item page to transfer information\n" + err + err.);
-    // 
+    } catch (err) {
+      console.log("Must be on the Inventory/New Item page to transfer information\n" + err);
+    }
   }
 
   // converts a month integer (0-11) to a 3 character string

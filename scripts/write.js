@@ -43,6 +43,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         tag = document.getElementById("react-select-10-input");
       }
       if (!tag) {
+        tag = document.getElementById("react-select-13-input");
+      }
+      if (!tag) {
         tag = document.getElementById("view_function__tags");
       }
       tag.focus();
@@ -62,7 +65,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       }
       if (!vendor) {
         vendor = document.getElementById("react-select-9-input");
-      } if (!vendor) {
+      }
+      if (!tag) {
+        tag = document.getElementById("react-select-12-input");
+      } 
+      if (!vendor) {
         vendor = document.getElementById("vendor_id");
       }
       vendor.focus();

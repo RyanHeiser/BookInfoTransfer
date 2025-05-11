@@ -15,7 +15,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
   function pasteInfo() {
-    try {
+    // try {
       console.log("pasting");
 
       // enters description
@@ -35,9 +35,14 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       const date = new Date(); 
       tagValue += monthToString(date.getMonth());
       tagValue += yearToString(date.getFullYear());
-      const tag = document.getElementById("react-select-4-input");
+      let tag = document.getElementById("react-select-4-input");
       if (!tag) {
         tag = document.getElementById("react-select-7-input");
+        console.log("check 7")
+      }
+      if (!tag) {
+        tag = document.getElementById("react-select-10-input");
+        console.log("check 10")
       }
       tag.focus();
       // enters the tag string into the input element
@@ -50,9 +55,14 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       if (!infoArr[3]) {
           infoArr[3] = "NO_VENDOR_FOUND";
       }
-      const vendor = document.getElementById("react-select-3-input");
+      let vendor = document.getElementById("react-select-3-input");
       if (!vendor) {
         vendor = document.getElementById("react-select-6-input");
+        console.log("check 6")
+      }
+      if (!vendor) {
+        tag = document.getElementById("react-select-9-input");
+        console.log("check 9")
       }
       vendor.focus();
       // enters the vendor string into the input element
@@ -62,14 +72,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       vendor.dispatchEvent(ev); // dispatches a keydown event to simulate the enter key being pressed
       
       // sets inventory to 1
-      const inv = document.getElementById("view_function__reorder_lvl");
+      let inv = document.getElementById("view_function__reorder_lvl");
       inv.value = "1";
 
       chrome.storage.sync.clear(); // clears storage so the same book info can be passed in and the onChanged listener will still fire
-    } catch (err) {
-      console.log("Must be on the Inventory/New Item page to transfer information\n" + err);
-      
-    }
+    // } catch (err) {
+    //   console.log("Must be on the Inventory/New Item page to transfer information\n" + err + err.);
+    // 
   }
 
   // converts a month integer (0-11) to a 3 character string

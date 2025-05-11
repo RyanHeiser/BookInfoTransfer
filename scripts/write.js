@@ -38,11 +38,12 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       let tag = document.getElementById("react-select-4-input");
       if (!tag) {
         tag = document.getElementById("react-select-7-input");
-        console.log("check 7")
       }
       if (!tag) {
         tag = document.getElementById("react-select-10-input");
-        console.log("check 10")
+      }
+      if (!tag) {
+        tag = document.getElementById("view_function__tags");
       }
       tag.focus();
       // enters the tag string into the input element
@@ -58,11 +59,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       let vendor = document.getElementById("react-select-3-input");
       if (!vendor) {
         vendor = document.getElementById("react-select-6-input");
-        console.log("check 6")
       }
       if (!vendor) {
-        tag = document.getElementById("react-select-9-input");
-        console.log("check 9")
+        vendor = document.getElementById("react-select-9-input");
+      } if (!vendor) {
+        vendor = document.getElementById("vendor_id");
       }
       vendor.focus();
       // enters the vendor string into the input element

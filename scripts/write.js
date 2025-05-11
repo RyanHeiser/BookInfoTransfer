@@ -35,15 +35,12 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       const date = new Date(); 
       tagValue += monthToString(date.getMonth());
       tagValue += yearToString(date.getFullYear());
-      let tag = document.getElementById("react-select-4-input");
-      if (!tag) {
-        tag = document.getElementById("react-select-7-input");
-      }
-      if (!tag) {
-        tag = document.getElementById("react-select-10-input");
-      }
-      if (!tag) {
-        tag = document.getElementById("react-select-13-input");
+      let tag = undefined;
+      // scan every possible vendor id up to 1000
+      let tagNum = 4;
+      while (!tag && tagNum < 1000) {
+        tag = document.getElementById("react-select-" + tagNum + "-input");
+        tagNum += 3;
       }
       if (!tag) {
         tag = document.getElementById("view_function__tags");
@@ -59,16 +56,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       if (!infoArr[3]) {
           infoArr[3] = "NO_VENDOR_FOUND";
       }
-      let vendor = document.getElementById("react-select-3-input");
-      if (!vendor) {
-        vendor = document.getElementById("react-select-6-input");
+      let vendor = undefined;
+      // scan every possible vendor id up to 1000
+      let vendorNum = 3;
+      while (!vendor && vendorNum < 1000) {
+        vendor = document.getElementById("react-select-" + vendorNum + "-input");
+        vendorNum += 3;
       }
-      if (!vendor) {
-        vendor = document.getElementById("react-select-9-input");
-      }
-      if (!tag) {
-        tag = document.getElementById("react-select-12-input");
-      } 
       if (!vendor) {
         vendor = document.getElementById("vendor_id");
       }

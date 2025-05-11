@@ -36,12 +36,17 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       tagValue += monthToString(date.getMonth());
       tagValue += yearToString(date.getFullYear());
       let tag = undefined;
-      // scan every possible vendor id up to 1000
+
+      // scan every possible tag id up to 1000
+      // tag ids start at 4 and increase by 3 every time an item is added
+      // resets to 4 after refresh
       let tagNum = 4;
       while (!tag && tagNum < 1000) {
         tag = document.getElementById("react-select-" + tagNum + "-input");
         tagNum += 3;
       }
+
+      // tags input sometimes has an id of view_function__tags before being clicked
       if (!tag) {
         tag = document.getElementById("view_function__tags");
       }
@@ -57,12 +62,17 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
           infoArr[3] = "NO_VENDOR_FOUND";
       }
       let vendor = undefined;
+
       // scan every possible vendor id up to 1000
+      // vendor ids start at 3 and increase by 3 every time an item is added
+      // resets to 3 after refresh
       let vendorNum = 3;
       while (!vendor && vendorNum < 1000) {
         vendor = document.getElementById("react-select-" + vendorNum + "-input");
         vendorNum += 3;
       }
+
+      // vendor input sometimes has an id of vendor_id before being clicked
       if (!vendor) {
         vendor = document.getElementById("vendor_id");
       }
